@@ -9,7 +9,7 @@ interface Message {
   content: string;
 }
 
-export default function Chatbot({ datasetId }: { datasetId: string }) {
+export default function Chatbot({ datasetId, active }: { datasetId: string, active?: boolean }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -36,7 +36,7 @@ export default function Chatbot({ datasetId }: { datasetId: string }) {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input, dataset_id: datasetId }),
+        body: JSON.stringify({ query: input, dataset_id: datasetId }),
       });
 
       const data = await response.json();
@@ -82,7 +82,7 @@ export default function Chatbot({ datasetId }: { datasetId: string }) {
         {messages.length === 0 ? (
           <div className={styles.emptyState}>
             <Bot size={48} className={styles.emptyIcon} />
-            <p>Ask me questions about your data, e.g., "What's the average value of [Column]?"</p>
+            <p>Ask me questions about your data, e.g., &quot;What&apos;s the average value of [Column]?&quot;</p>
           </div>
         ) : (
           <div className={styles.messageList}>

@@ -15,18 +15,20 @@ import { useSettings } from '@/context/SettingsContext';
 export default function DataTable({ dataset, anomalies = [], isNested = false }: DataTableProps) {
   const { settings, updateSettings } = useSettings();
   const [currentPage, setCurrentPage] = useState(1);
-
   const rowsPerPage = settings.rowsPerPage;
 
-  // Handle various data states gracefully
-  if (!dataset) return <div className="card" style={{ padding: '2rem', textAlign: 'center', color: 'var(--tblr-text-muted)' }}>No data loaded.</div>;
-  
-  const allRows = useMemo(() => Array.isArray(dataset) ? dataset : ((dataset as any).rows || []), [dataset]);
-  const columns = useMemo(() => Array.isArray(dataset) ? (dataset[0] ? Object.keys(dataset[0]) : []) : ((dataset as any).headers || []), [dataset]);
+  // Hooks must be called unconditionally at the top level
+  const allRows = useMemo(() => {
+    if (!dataset) return [];
+    return Array.isArray(dataset) ? dataset : ((dataset as any).rows || []);
+  }, [dataset]);
 
-  if (allRows.length === 0) {
-    return <div className="card" style={{ padding: '2rem', textAlign: 'center', color: 'var(--tblr-text-muted)' }}>The dataset is empty.</div>;
-  }
+  const totalRows = allRows.length;
+
+  const columns = useMemo(() => {
+    if (!dataset) return [];
+    return Array.isArray(dataset) ? (dataset[0] ? Object.keys(dataset[0]) : []) : ((dataset as any).headers || []);
+  }, [dataset]);
 
   // Create a map for quick anomaly lookup: row_index -> { column -> severity }
   const anomalyMap = useMemo(() => {
@@ -40,12 +42,18 @@ export default function DataTable({ dataset, anomalies = [], isNested = false }:
     return map;
   }, [anomalies]);
 
-  // Pagination logic
-  const totalRows = allRows.length;
+  // Pagination logic hooks
   const paginatedRows = useMemo(() => {
+    if (!allRows) return [];
     const start = (currentPage - 1) * rowsPerPage;
     return allRows.slice(start, start + rowsPerPage);
   }, [allRows, currentPage, rowsPerPage]);
+
+  // Handle various data states gracefully AFTER hooks
+  if (!dataset) return <div className="card" style={{ padding: '2rem', textAlign: 'center', color: 'var(--tblr-text-muted)' }}>No data loaded.</div>;
+  if (allRows.length === 0) {
+    return <div className="card" style={{ padding: '2rem', textAlign: 'center', color: 'var(--tblr-text-muted)' }}>The dataset is empty.</div>;
+  }
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

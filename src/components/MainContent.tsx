@@ -35,7 +35,7 @@ export default function MainContent({
           <h2 className="heading-primary">Welcome to Zentrixa</h2>
           <p className="text-muted" style={{ marginTop: '1rem' }}>
             Upload a CSV file in the sidebar to begin your automated data exploration. 
-            We'll generate insights, detect anomalies, and prepare forecasts.
+            We&apos;ll generate insights, detect anomalies, and prepare forecasts.
           </p>
         </div>
       </div>
