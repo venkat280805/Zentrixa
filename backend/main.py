@@ -10,7 +10,7 @@ from sklearn.linear_model import LinearRegression
 from datetime import datetime, timedelta
 from scipy import stats
 
-app = FastAPI(title="AI Data Analyst Assistant API")
+app = FastAPI(title="Zentrixa API")
 
 app.add_middleware(
     CORSMiddleware,

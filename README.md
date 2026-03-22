@@ -1,6 +1,5 @@
-# AI Data Analyst Assistant
-
-A web application that allows users to upload a CSV file and view summary statistics and data preview. Built with Next.js (frontend) and FastAPI (backend).
+# Zentrixa
+Zentrixa is a modern, AI-powered data analysis platform that helps you unlock insights from your CSV files instantly.
 
 ## Prerequisites
 - Node.js (v18+)
