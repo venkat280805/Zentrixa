@@ -1,35 +1,36 @@
-# Dependency folders
-node_modules/
-venv/
-.venv/
-env/
-__pycache__/
-*.py[cod]
-*.so
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Next.js build
-.next/
-out/
-build/
-dist/
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
 
-# Local data / Temp / Environment
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
 .env*.local
+
+# vercel
 .vercel
+
+# typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# User specific data (optional but recommended to ignore by default)
-# *.csv
-
-# Backend specific
-backend/*.db
-backend/uploads/
-backend/.pytest_cache/
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
