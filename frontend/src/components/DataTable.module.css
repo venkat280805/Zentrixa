@@ -1,0 +1,93 @@
+.tableResponsive {
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 700px;
+  position: relative;
+  background: var(--tblr-surface);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--tblr-bg);
+  padding: 0.875rem 1rem;
+  font-weight: 700;
+  color: var(--tblr-text-muted);
+  border-bottom: 2px solid var(--tblr-border);
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.stickyCol {
+  position: sticky;
+  left: 0;
+  z-index: 110 !important;
+  background: var(--tblr-bg) !important;
+  border-right: 2px solid var(--tblr-border) !important;
+  width: 50px;
+  text-align: center !important;
+}
+
+.table tbody td {
+  padding: 0.625rem 1rem;
+  border-bottom: 1px solid var(--tblr-border);
+  color: var(--tblr-text);
+  white-space: nowrap;
+}
+
+.rowCount {
+  position: sticky;
+  left: 0;
+  z-index: 50;
+  background: var(--tblr-surface);
+  color: var(--tblr-text-muted);
+  font-weight: 600;
+  text-align: center;
+  border-right: 2px solid var(--tblr-border);
+}
+
+.table tbody tr:hover td {
+  background-color: var(--tblr-bg);
+}
+
+.table tbody tr:hover .rowCount {
+  background-color: var(--tblr-bg);
+}
+
+.cellCritical {
+  background-color: #fff5f5 !important;
+  color: #d63939 !important;
+  font-weight: 600;
+}
+
+.cellWarning {
+  background-color: #fff9db !important;
+  color: #f76707 !important;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.75rem;
+  }
+  
+  .table thead th, 
+  .table tbody td {
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .tableResponsive {
+    max-height: 500px;
+  }
+}
