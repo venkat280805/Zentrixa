@@ -1,0 +1,35 @@
+# Dependency folders
+node_modules/
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.so
+
+# Next.js build
+.next/
+out/
+build/
+dist/
+
+# Local data / Temp / Environment
+.DS_Store
+.env*.local
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# User specific data (optional but recommended to ignore by default)
+# *.csv
+
+# Backend specific
+backend/*.db
+backend/uploads/
+backend/.pytest_cache/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
